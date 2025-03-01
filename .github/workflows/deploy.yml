@@ -25,6 +25,7 @@ jobs:
         run: |
           git config --global user.email "tars90pct@gmail.com"
           git config --global user.name "tars90pct"
+          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/tars90pct/interview-notes.git
 
       - name: Run deploy:static script
         run: npm run deploy:static
