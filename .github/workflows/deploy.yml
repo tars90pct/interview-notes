@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Static Site
 
 on:
   push:
@@ -6,17 +6,20 @@ on:
       - main
 
 jobs:
-  Deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout the code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: "npm"
+          node-version: "16"
 
-      - name: Build and generate static files
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run deploy:static script
         run: npm run deploy:static
