@@ -1,1 +1,0 @@
-import{q as t,P as o,U as n,_ as s,c as r,o as p}from"./FH84JRH3.js";const a=t({components:{},props:{error:{type:Object,default:()=>({statusCode:404})}},setup(e){return o(()=>{}),n({data:{},methods:{},stores:{}},{})}});function c(e,d,u,i,f,_){return p(),r("div",null,"index")}const m=s(a,[["render",c]]);export{m as default};
