@@ -17,7 +17,6 @@
     setup() {
       const version = useRuntimeConfig().public.version as string;
       const i18n = useI18n();
-      i18n.setLocale("zh-tw");
       i18n.setLocaleCookie("zh-tw");
 
       useHead({

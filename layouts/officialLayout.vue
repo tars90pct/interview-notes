@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen w-screen">
     <header
-      class="bg-background/80 sticky left-0 top-0 z-50 flex w-full flex-row border-b border-solid backdrop-blur"
+      class="sticky left-0 top-0 z-50 flex w-full flex-row border-b border-solid bg-background/80 backdrop-blur"
     >
       <div class="flex h-16 w-full flex-row items-center gap-1 px-8 py-4">
         <div class="flex-1 text-lg font-bold">{{ $t("Interview Notes") }}</div>
@@ -55,10 +55,10 @@
   </div>
 </template>
 <script lang="ts">
-  import { useBrowserStore } from "~/stores/broswer";
-  import { buildDefineComponentSetup } from "~/utils/internal";
   import pages from "~/assets/pages/index.json";
+  import { useBrowserStore } from "~/stores/broswer";
   import { PageMeta } from "~/types/Page";
+  import { buildDefineComponentSetup } from "~/utils/internal";
 
   export default defineComponent({
     components: {},
@@ -67,6 +67,8 @@
         layout: false,
       });
       const broswerStore = useBrowserStore();
+      const i18n = useI18n();
+      i18n.setLocaleCookie("zh-tw");
       const sideMenus = PageMeta.OfArray(pages, []);
       return buildDefineComponentSetup(
         {
