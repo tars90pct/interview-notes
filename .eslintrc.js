@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ["@vue/eslint-config-standard", "eslint:recommended", "plugin:vue/vue3-recommended", "prettier"],
+  extends: ["@nuxtjs/eslint-config-typescript", "prettier", "plugin:prettier/recommended"],
   parserOptions: {
     parser: "@babel/eslint-parser",
     requireConfigFile: false,

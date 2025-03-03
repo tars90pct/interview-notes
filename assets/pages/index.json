@@ -1,0 +1,15 @@
+[
+  {
+    "key": "getting-started",
+    "icon": "material-symbols-light:rocket-launch-outline-rounded"
+  },
+  {
+    "key": "problem-solving",
+    "icon": "hugeicons:leetcode",
+    "children": [
+      {
+        "key": "prefix-sum"
+      }
+    ]
+  }
+]
