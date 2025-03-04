@@ -17,6 +17,9 @@ module.exports = {
         },
       },
       fontFamily: {
+        roboto: ['"Roboto"'],
+        notoserif: ['"Noto Serif TC"', "serif"],
+        notosans: ['"Noto Sans TC"', "serif"],
         sans: [
           `Inter, ${fontFamily.sans.join(", ")}`,
           {

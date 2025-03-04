@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import fs from "fs";
+
 const version = fs.readFileSync("./VERSION").toString();
 
 export default defineNuxtConfig({
@@ -18,9 +19,9 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/color-mode",
     "@vueuse/nuxt",
-    "@nuxt/fonts",
     "@pinia/nuxt",
     "@nuxtjs/mdc",
+    "@nuxtjs/google-fonts",
   ],
 
   i18n: {
@@ -39,6 +40,14 @@ export default defineNuxtConfig({
       },
     ],
     defaultLocale: "zh-tw",
+  },
+
+  googleFonts: {
+    families: {
+      "Noto Serif TC": [400, 700],
+      "Noto Sans TC": [400, 700],
+    },
+    display: "swap", // Optional: Optimize font loading
   },
 
   tailwindcss: {

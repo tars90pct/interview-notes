@@ -1,27 +1,19 @@
 <template>
-  <div>index</div>
+  <div></div>
 </template>
 <script lang="ts">
   import { buildDefineComponentSetup } from "~/utils/internal";
-  import { defineComponent, onMounted, ref, watch } from "vue";
-  import type { NuxtError } from "#app";
+  import { defineComponent, onMounted } from "vue";
 
   export default defineComponent({
     components: {},
-    props: {
-      error: {
-        type: Object as () => NuxtError,
-        default: () => {
-          return {
-            statusCode: 404,
-          };
-        },
-      },
-    },
+    props: {},
     setup(props) {
       definePageMeta({
         layout: "official-layout",
       });
+      const router = useRouter();
+      router.push("/getting-started");
       onMounted(() => {});
       return buildDefineComponentSetup(
         {

@@ -49,6 +49,5 @@
     @apply m-0 !important;
     @apply h-screen !important;
     @apply select-auto !important;
-    font-family: "Noto Sans TC", serif;
   }
 </style>
