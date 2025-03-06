@@ -4,6 +4,10 @@
 
 當你需要對子陣列進行*多次求和查詢*，或是需要*計算累積總和*時，即可採用這種模式。
 
+::TIPS
+{{FILE|markdown/zh-tw/problem-solving/prefix-sum-pattern.md}}
+::
+
 ## 特性：
 
 - P\[j] = A\[j] + A\[j-1] + ... + A\[0]

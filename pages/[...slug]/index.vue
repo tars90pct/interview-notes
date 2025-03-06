@@ -3,10 +3,10 @@
     <UiBreadcrumbs :items="data.crumbs" />
     <div class="h-[calc(100dvh-129px)] w-full overflow-x-auto p-4">
       <MDC
+        :key="markdown"
         class="prose max-w-none dark:prose-invert [&>h2>a]:no-underline [&>h3>a]:no-underline"
         :value="markdown"
         tag="article"
-        v-if="markdown"
       />
     </div>
   </div>
@@ -36,14 +36,25 @@
           responseType: "text",
         })) as string;
         markdown.value = text.replace("{{BASEURL}}", baseURL);
-        findFiles(MarkdownFileCodes.LEETCODE, text).forEach(async (path) => {
+        findFiles(MarkdownFileCodes.LEETCODE, markdown.value).forEach(async (path) => {
           const content = await fetchLeetcode(baseURL, path);
           if (content) {
             const target = constructSyntax(MarkdownFileCodes.LEETCODE, path);
             const escapedTarget = target.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
             const regexTarget = new RegExp(escapedTarget, "g");
 
-            markdown.value = text.replace(regexTarget, content);
+            markdown.value = markdown.value.replace(regexTarget, content);
+          }
+        });
+        findFiles(MarkdownFileCodes.FILE, markdown.value).forEach(async (path) => {
+          const content = await fetchFile(baseURL, path);
+
+          if (content) {
+            const target = constructSyntax(MarkdownFileCodes.FILE, path);
+            const escapedTarget = target.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+
+            const regexTarget = new RegExp(escapedTarget, "g");
+            markdown.value = markdown.value.replace(regexTarget, content);
           }
         });
       });

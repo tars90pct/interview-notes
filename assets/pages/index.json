@@ -12,6 +12,12 @@
         "children": [
           {
             "key": "303.range-sum-query-immutable"
+          },
+          {
+            "key": "525.contiguous-array"
+          },
+          {
+            "key": "560.subarray-sum-equals-k"
           }
         ]
       }

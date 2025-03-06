@@ -3,6 +3,8 @@
   "problem-solving": "資料結構與演算法",
   "prefix-sum": "Prefix Sum",
   "303.range-sum-query-immutable": "Range Sum Query Immutable",
+  "525.contiguous-array": "Contiguous Array",
+  "560.subarray-sum-equals-k": "Subarray Sum Equals K",
   "delivery-framework": "Delivery framework",
   "system-design": "系統設計"
 }

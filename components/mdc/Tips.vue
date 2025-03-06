@@ -14,9 +14,7 @@
     components: {},
 
     setup(props) {
-      onMounted(() => {
-        console.log(props);
-      });
+      onMounted(() => {});
       const themeSelection = {
         info: [],
         warning: [],

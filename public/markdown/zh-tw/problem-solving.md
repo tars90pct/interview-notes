@@ -8,6 +8,15 @@
 
 儘管業界對於『LeetCode高手等同優秀工程師』的爭議從未停歇，但殘酷的現實是：在僧多粥少的就業市場中，解不開題，就敲不開頂尖科技公司的大門——這套遊戲規則或許不完美，卻是多數企業衡量技術潛力的最速篩選機制。
 
+- 解題步驟：
+
+  - 釐清題意
+  - Pattern
+  - 實作
+  - 複雜度分析
+    - 時間複雜度
+    - 空間複雜度
+
 - Leetcode練習方法
   - 先了解Leetcode題型是有Pattern的，先看懂題型再下手會簡單點
     - [15 leetcode patterns](https://blog.algomaster.io/p/15-leetcode-patterns)
