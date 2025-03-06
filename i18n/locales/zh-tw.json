@@ -1,5 +1,8 @@
 {
   "getting-started": "序言",
   "problem-solving": "資料結構與演算法",
-  "prefix-sum": "Prefix Sum"
+  "prefix-sum": "Prefix Sum",
+  "303.range-sum-query-immutable": "Range Sum Query Immutable",
+  "delivery-framework": "Delivery framework",
+  "system-design": "系統設計"
 }

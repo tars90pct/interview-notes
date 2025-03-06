@@ -8,7 +8,21 @@
     "icon": "hugeicons:leetcode",
     "children": [
       {
-        "key": "prefix-sum"
+        "key": "prefix-sum",
+        "children": [
+          {
+            "key": "303.range-sum-query-immutable"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "system-design",
+    "icon": "material-symbols-light:design-services-rounded",
+    "children": [
+      {
+        "key": "delivery-framework"
       }
     ]
   }

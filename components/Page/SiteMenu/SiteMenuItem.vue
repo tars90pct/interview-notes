@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col">
+  <div class="flex w-full flex-col gap-2">
     <UiButton
       class="flex w-full items-center justify-between rounded-md px-3 py-2 hover:bg-accent"
       :class="{
@@ -11,7 +11,7 @@
       <div class="flex items-center gap-2.5">
         <Icon :name="$props.pageMeta.icon" v-if="$props.pageMeta.icon" class="size-4" />
         <div v-else class="size-4" />
-        <span>{{ $t($props.pageMeta.key) }}</span>
+        <span class="max-w-48 truncate">{{ $t($props.pageMeta.key) }}</span>
       </div>
       <Icon
         name="i-lucide:chevron-down"

@@ -45,10 +45,10 @@
       </div>
     </header>
     <main class="grid grid-cols-[290px_minmax(0,1fr)]">
-      <div class="h-[calc(100dvh-65px)] border-r">
+      <div class="h-[calc(100dvh-69px)] border-r">
         <LazyPageSiteMenu :page-metas="data.sideMenus" class="p-2" />
       </div>
-      <div class="h-[calc(100dvh-65px)] w-full">
+      <div class="h-[calc(100dvh-69px)] w-full">
         <slot />
       </div>
     </main>
