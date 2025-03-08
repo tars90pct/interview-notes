@@ -2,9 +2,14 @@
   "getting-started": "序言",
   "problem-solving": "資料結構與演算法",
   "prefix-sum": "Prefix Sum",
+  "two-pointers": "Two Pointers",
   "303.range-sum-query-immutable": "Range Sum Query Immutable",
   "525.contiguous-array": "Contiguous Array",
   "560.subarray-sum-equals-k": "Subarray Sum Equals K",
+  "15.3-sum": "3 sum",
+  "27.remove-element": "Remove Element",
+  "11.container-with-most-water": "Container With Most Water",
+  "344.reverse-string": "Reverse String",
   "delivery-framework": "Delivery framework",
   "system-design": "系統設計"
 }

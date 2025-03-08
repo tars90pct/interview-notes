@@ -15,21 +15,21 @@
       </div>
       <Icon
         name="i-lucide:chevron-down"
-        v-if="!open && $props.pageMeta.children && $props.pageMeta.children.length > 0"
+        v-if="!isOpen && $props.pageMeta.children && $props.pageMeta.children.length > 0"
         class="size-4"
-        @click="open = !open"
+        @click="methods.updateOpenStatus()"
       />
       <Icon
         name="i-lucide:chevron-up"
-        v-if="open && $props.pageMeta.children && $props.pageMeta.children.length > 0"
+        v-if="isOpen && $props.pageMeta.children && $props.pageMeta.children.length > 0"
         class="size-4"
-        @click="open = !open"
+        @click="methods.updateOpenStatus()"
       />
     </UiButton>
     <SiteMenuItem
       v-for="pageMeta of $props.pageMeta.children"
       :page-meta="pageMeta"
-      v-if="open && $props.pageMeta.children && $props.pageMeta.children.length > 0"
+      v-if="isOpen && $props.pageMeta.children && $props.pageMeta.children.length > 0"
     />
   </div>
 </template>
@@ -47,15 +47,29 @@
       },
     },
     setup(props) {
-      const open = ref(true);
       const router = useRouter();
       const route = useRoute();
+      const pageKey = props.pageMeta.getLink();
+      const getOpenStatus = (): boolean => {
+        const open = localStorage.getItem(pageKey);
+        return open === null;
+      };
+      const isOpen = ref(getOpenStatus());
+      const updateOpenStatus = (): void => {
+        if (!isOpen.value) {
+          localStorage.removeItem(pageKey);
+        } else {
+          localStorage.setItem(pageKey, "");
+        }
+        isOpen.value = !isOpen.value;
+      };
       const isActive = ref(false);
 
       // methods
       const link = () => {
         router.push(`/${props.pageMeta.getLink()}`);
       };
+
       const checkActive = () => {
         const slugs = route.params.slug as string[];
         if (slugs) {
@@ -77,11 +91,12 @@
           data: {},
           methods: {
             link,
+            updateOpenStatus,
           },
           stores: {},
         },
         {
-          open,
+          isOpen,
           isActive,
         }
       );

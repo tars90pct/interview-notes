@@ -8,6 +8,12 @@
 
 ## 釐清題意
 
+- 範例
+
+  **輸入**: height = \[1,8,6,2,5,4,8,3,7]
+  **輸出**: 49
+  **解釋**: left = 1, right = 8, max(n\[left], n\[right]) \* (right - left) = 49
+
 ## Pattern
 
 ::TIPS
