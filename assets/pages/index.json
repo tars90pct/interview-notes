@@ -39,6 +39,36 @@
             "key": "344.reverse-string"
           }
         ]
+      },
+      {
+        "key": "linked-list",
+        "icon": "carbon:idea",
+        "children": [
+          {
+            "key": "206.reverse-linked-list"
+          },
+          {
+            "key": "21.merge-two-sorted-lists"
+          },
+          {
+            "key": "82.remove-duplicates-from-sorted-list-ii"
+          },
+          {
+            "key": "83.remove-duplicates-from-sorted-list"
+          },
+          {
+            "key": "86.partition-list"
+          },
+          {
+            "key": "138.copy-list-with-random-pointer"
+          },
+          {
+            "key": "141.linked-list-cycle"
+          },
+          {
+            "key": "142.linked-list-cycle-ii"
+          }
+        ]
       }
     ]
   },
@@ -48,6 +78,17 @@
     "children": [
       {
         "key": "delivery-framework"
+      },
+      {
+        "key": "core-concepts",
+        "children": [
+          {
+            "key": "scaling"
+          },
+          {
+            "key": "cap-theorem"
+          }
+        ]
       }
     ]
   }

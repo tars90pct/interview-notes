@@ -3,6 +3,7 @@
   "problem-solving": "資料結構與演算法",
   "prefix-sum": "Prefix Sum",
   "two-pointers": "Two Pointers",
+  "linked-list": "Linked List",
   "303.range-sum-query-immutable": "Range Sum Query Immutable",
   "525.contiguous-array": "Contiguous Array",
   "560.subarray-sum-equals-k": "Subarray Sum Equals K",
@@ -10,6 +11,17 @@
   "27.remove-element": "Remove Element",
   "11.container-with-most-water": "Container With Most Water",
   "344.reverse-string": "Reverse String",
+  "206.reverse-linked-list": "Reverse Linked List",
+  "21.merge-two-sorted-lists": "Merge Two Sorted Lists",
+  "82.remove-duplicates-from-sorted-list-ii": "Remove Duplicates From Sorted List 2",
+  "83.remove-duplicates-from-sorted-list": "Remove Duplicates From Sorted List",
+  "86.partition-list": "Partition List",
+  "138.copy-list-with-random-pointer": "Copy List With Random Pointer",
+  "141.linked-list-cycle": "Linked List Cycle",
+  "142.linked-list-cycle-ii": "Linked List Cycle II",
+  "system-design": "系統設計",
   "delivery-framework": "Delivery framework",
-  "system-design": "系統設計"
+  "scaling": "Scaling",
+  "cap-theorem": "CAP Theorem",
+  "core-concepts": "核心觀念"
 }
