@@ -19,11 +19,18 @@
   "138.copy-list-with-random-pointer": "Copy List With Random Pointer",
   "141.linked-list-cycle": "Linked List Cycle",
   "142.linked-list-cycle-ii": "Linked List Cycle II",
+  "143.reorder-list": "Reorder List",
+  "148.sort-list": "Sort List",
+  "234.palindrome-linked-list": "Palindrome Linked List",
+  "services": "服務介紹",
+  "elasticsearch": "Elasticsearch",
   "system-design": "系統設計",
   "delivery-framework": "Delivery framework",
   "scaling": "Scaling",
   "cap-theorem": "CAP Theorem",
   "locking": "Locking",
+  "indexing": "Indexing",
   "core-concepts": "核心觀念",
+  "key-technologies": "Key Technologies",
   "contact": "聯絡方式"
 }

@@ -67,6 +67,15 @@
           },
           {
             "key": "142.linked-list-cycle-ii"
+          },
+          {
+            "key": "143.reorder-list"
+          },
+          {
+            "key": "148.sort-list"
+          },
+          {
+            "key": "234.palindrome-linked-list"
           }
         ]
       }
@@ -77,10 +86,12 @@
     "icon": "material-symbols-light:design-services-rounded",
     "children": [
       {
-        "key": "delivery-framework"
+        "key": "delivery-framework",
+        "icon": "carbon:idea"
       },
       {
         "key": "core-concepts",
+        "icon": "carbon:idea",
         "children": [
           {
             "key": "scaling"
@@ -90,10 +101,23 @@
           },
           {
             "key": "locking"
+          },
+          {
+            "key": "indexing"
           }
         ]
+      },
+      {
+        "key": "key-technologies",
+        "icon": "carbon:idea",
+        "children": []
       }
     ]
+  },
+  {
+    "key": "services",
+    "icon": "icons8:services",
+    "children": [{ "key": "elasticsearch" }]
   },
   {
     "key": "contact",

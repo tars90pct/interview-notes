@@ -3,7 +3,7 @@
     <header
       class="sticky left-0 top-0 z-50 flex w-full flex-row border-b border-solid bg-background/80 backdrop-blur"
     >
-      <div class="flex h-16 w-full flex-row items-center gap-1 px-8 py-4">
+      <div class="flex h-16 w-full flex-row items-center gap-1 px-8 pb-2 pt-4">
         <UiDrawer should-scale-background>
           <UiDrawerTrigger as-child>
             <UiButton size="icon-sm" variant="outline" class="md:hidden">

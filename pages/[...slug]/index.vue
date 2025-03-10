@@ -54,6 +54,16 @@
         const fullUrl = `${protocol}//${hostname}${port}`;
         const baseURL = `${fullUrl}${useRuntimeConfig().app.baseURL}`;
 
+        useHead({
+          title: i18n.t(pageMeta.key),
+        });
+        const { gtag } = useGtag();
+
+        gtag("event", "screen_view", {
+          app_name: "interview-note",
+          screen_name: pageMeta.key,
+        });
+
         let text = (await $fetch(`/markdown/${i18n.getLocaleCookie()}/${pageMeta.getLink()}.md`, {
           responseType: "text",
         })) as string;
@@ -80,6 +90,7 @@
           }
         });
       });
+      const { gtag } = useGtag();
       const i18n = useI18n();
       const route = useRoute();
       const router = useRouter();
