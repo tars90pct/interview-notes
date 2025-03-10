@@ -10,10 +10,24 @@
       />
       <div class="flex flex-row items-center justify-center gap-2 pt-4">
         <div class="cursor-pointer" v-if="data.prevPage">
-          <a :href="data.prevPage">Prev</a>
+          <a
+            @click="
+              () => {
+                methods.goTo(data.prevPage);
+              }
+            "
+            >Prev</a
+          >
         </div>
         <div class="cursor-pointer" v-if="data.nextPage">
-          <a :href="data.nextPage">Next</a>
+          <a
+            @click="
+              () => {
+                methods.goTo(data.nextPage);
+              }
+            "
+            >Next</a
+          >
         </div>
       </div>
     </div>
@@ -82,6 +96,9 @@
       const nextPage =
         currentPageIndex + 1 >= pageIndexes.length ? "" : `/${pageIndexes[currentPageIndex + 1]}`;
       const prevPage = currentPageIndex - 1 >= 0 ? `/${pageIndexes[currentPageIndex - 1]}` : "";
+      const goTo = (path: string) => {
+        router.push(path);
+      };
 
       const crumbs: Crumbs[] = [
         {
@@ -103,7 +120,9 @@
             nextPage,
             prevPage,
           },
-          methods: {},
+          methods: {
+            goTo,
+          },
           stores: {},
         },
         {
