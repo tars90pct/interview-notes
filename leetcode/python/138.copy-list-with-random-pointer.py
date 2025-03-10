@@ -19,7 +19,6 @@ class Node:
         self.next = next
         self.random = random
 """
-
 class Solution(object):
     def copyRandomList(self, head):
         """
@@ -28,21 +27,19 @@ class Solution(object):
         """
         if head is None:
             return head
-        dummy = Node(-1)
-        dummy.next = head
-        record = {}
+        lookup = {}
         curr = head
         while curr:
-            record[curr] = Node(curr.val)
+            lookup[curr] = Node(curr.val)
             curr = curr.next
         
         curr = head
         while curr:
-            curr_cpoy = record[curr]
-            curr_cpoy.next = record.get(curr.next)
-            curr_cpoy.random = record.get(curr.random)
+            node = lookup.get(curr)
+            node.next = lookup.get(curr.next)
+            node.random = lookup.get(curr.random)
             curr = curr.next
-        return record.get(dummy.next)
-
+        
+        return lookup.get(head)
 # @lc code=end
 
