@@ -22,31 +22,19 @@ class Solution(object):
         """
         dummy = ListNode()
         dummy.next = head
-        prev = dummy
+        pre = dummy
         curr = dummy.next
         while curr:
-            while curr.next and curr.next.val == curr.val:
+            val = curr.val
+            while curr.next and curr.next.val == val:
                 curr = curr.next
-            if prev.next == curr:
-                prev = prev.next
+            if pre.next != curr:
                 curr = curr.next
+                pre.next = curr
             else:
+                pre = pre.next
                 curr = curr.next
-                prev.next = curr
         return dummy.next
-        # dummy = ListNode()
-        # dummy.next = head
-        # curr, prev = head, dummy
-        # while curr:
-        #     while curr.next and curr.val == curr.next.val:
-        #         curr = curr.next
-        #     if prev.next == curr:
-        #         prev = prev.next
-        #         curr = curr.next
-        #     else:
-        #         prev.next = curr.next
-        #         curr = curr.next
-        # return dummy.next
 # @lc code=end
 
 def list_to_linked_list(lst):

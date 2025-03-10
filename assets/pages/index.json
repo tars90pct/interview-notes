@@ -87,9 +87,16 @@
           },
           {
             "key": "cap-theorem"
+          },
+          {
+            "key": "locking"
           }
         ]
       }
     ]
+  },
+  {
+    "key": "contact",
+    "icon": "grommet-icons:contact"
   }
 ]

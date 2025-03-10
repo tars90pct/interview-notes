@@ -1,6 +1,6 @@
-import { defineStore } from "pinia";
 import pageIndex from "~/assets/pages/index.json";
 import { PageMeta } from "~/types/Page";
+import { defineStore } from "pinia";
 
 function flattenPageMetas(pages: PageMeta[]): PageMeta[] {
   return pages.flatMap((page) => {
@@ -12,14 +12,19 @@ function flattenPageMetas(pages: PageMeta[]): PageMeta[] {
 export const usePageStore = defineStore("page", {
   state: () => {
     const pages = PageMeta.OfArray(pageIndex, []);
+    const flattenPageMeta = flattenPageMetas(pages);
+    const pagesIndex = flattenPageMeta.map((page) => {
+      return page.getLink();
+    });
     const pageLookup = new Map(
-      flattenPageMetas(pages).map((page) => {
+      flattenPageMeta.map((page) => {
         return [page.getLink(), page];
       })
     );
     return {
       pages,
       pageLookup,
+      pagesIndex,
     };
   },
   actions: {

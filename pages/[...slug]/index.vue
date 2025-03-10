@@ -1,13 +1,21 @@
 <template>
   <div class="flex flex-col gap-3 p-4">
-    <UiBreadcrumbs :items="data.crumbs" />
-    <div class="h-[calc(100dvh-129px)] w-full overflow-x-auto p-4">
+    <UiBreadcrumbs :items="data.crumbs" class="hidden md:flex" />
+    <div class="flex h-[calc(100dvh-129px)] w-full flex-col overflow-x-auto p-4">
       <MDC
         :key="markdown"
-        class="prose max-w-none dark:prose-invert [&>h2>a]:no-underline [&>h3>a]:no-underline"
+        class="prose max-w-none flex-1 dark:prose-invert [&>h2>a]:no-underline [&>h3>a]:no-underline"
         :value="markdown"
         tag="article"
       />
+      <div class="flex flex-row items-center justify-center gap-2 pt-4">
+        <div class="cursor-pointer" v-if="data.prevPage">
+          <a :href="data.prevPage">Prev</a>
+        </div>
+        <div class="cursor-pointer" v-if="data.nextPage">
+          <a :href="data.nextPage">Next</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,10 +68,20 @@
       });
       const i18n = useI18n();
       const route = useRoute();
+      const router = useRouter();
       const markdown = ref<string>("");
       const pageStore = usePageStore();
       const paths = route.params.slug as string[];
       const pageMeta = pageStore.getPageMeta(paths)!;
+      if (!pageMeta) {
+        router.push("/");
+      }
+      const pageKey = paths.join("/");
+      const pageIndexes = pageStore.pagesIndex;
+      const currentPageIndex = pageIndexes.indexOf(pageKey);
+      const nextPage =
+        currentPageIndex + 1 >= pageIndexes.length ? "" : `/${pageIndexes[currentPageIndex + 1]}`;
+      const prevPage = currentPageIndex - 1 >= 0 ? `/${pageIndexes[currentPageIndex - 1]}` : "";
 
       const crumbs: Crumbs[] = [
         {
@@ -82,6 +100,8 @@
         {
           data: {
             crumbs,
+            nextPage,
+            prevPage,
           },
           methods: {},
           stores: {},

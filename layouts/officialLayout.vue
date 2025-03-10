@@ -1,9 +1,24 @@
 <template>
-  <div class="min-h-screen w-screen">
+  <div class="min-h-screen w-screen overflow-y-hidden">
     <header
       class="sticky left-0 top-0 z-50 flex w-full flex-row border-b border-solid bg-background/80 backdrop-blur"
     >
       <div class="flex h-16 w-full flex-row items-center gap-1 px-8 py-4">
+        <UiDrawer should-scale-background>
+          <UiDrawerTrigger as-child>
+            <UiButton size="icon-sm" variant="outline" class="md:hidden">
+              <Icon name="material-symbols-light:menu" class="size-5" />
+            </UiButton>
+          </UiDrawerTrigger>
+          <UiDrawerContent>
+            <LazyPageSiteMenu :page-metas="data.sideMenus" class="p-2" />
+            <UiDrawerClose class="absolute right-4 top-3 h-7 w-7" as-child>
+              <UiButton variant="ghost" size="icon-sm" class="opacity-50 hover:opacity-100">
+                <Icon name="lucide:x" />
+              </UiButton>
+            </UiDrawerClose>
+          </UiDrawerContent>
+        </UiDrawer>
         <div class="flex-1 text-lg font-bold">{{ $t("Interview Notes") }}</div>
         <div></div>
         <UiDropdownMenu>
@@ -44,11 +59,11 @@
         </UiDropdownMenu>
       </div>
     </header>
-    <main class="grid grid-cols-[290px_minmax(0,1fr)]">
-      <div class="h-[calc(100dvh-69px)] overflow-y-auto border-r">
+    <main class="grid md:grid-cols-[290px_minmax(0,1fr)]">
+      <div class="hidden h-[calc(100dvh-69px)] overflow-y-auto border-r md:block">
         <LazyPageSiteMenu :page-metas="data.sideMenus" class="p-2" />
       </div>
-      <div class="h-[calc(100dvh-69px)] w-full">
+      <div class="h-[calc(100dvh-69px)] w-full overflow-y-hidden">
         <slot />
       </div>
     </main>

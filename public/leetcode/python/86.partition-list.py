@@ -22,21 +22,21 @@ class Solution(object):
         :type x: int
         :rtype: Optional[ListNode]
         """
-        lessHead = ListNode()
-        greaterHead = ListNode()
-        less = lessHead
-        greater = greaterHead
+        dummy_l = ListNode()
+        dummy_r = ListNode()
+        left = dummy_l
+        right = dummy_r
         curr = head
         while curr:
             if curr.val < x:
-                less.next = curr
-                less = curr
+                left.next = curr
+                left = left.next
             else:
-                greater.next = curr
-                greater = curr
+                right.next = curr
+                right = right.next
             curr = curr.next
-        greater.next = None
-        less.next = greaterHead.next
-        return lessHead.next
+        left.next = dummy_r.next
+        right.next = None
+        return dummy_l.next        
 # @lc code=end
 
