@@ -4,12 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "NODE_ENV=development nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "deploy": "npm run build && npx gh-pages -d dist -b web",
-    "deploy:static": "npm run generate && npx gh-pages -d dist -b web"
+    "deploy:static": "NODE_ENV=production npm run generate && npx gh-pages -d dist -b web"
   },
   "dependencies": {
     "@nuxt/icon": "^1.10.3",
@@ -22,6 +22,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@vueuse/nuxt": "^12.7.0",
     "nuxt": "^3.15.4",
+    "nuxt-gtag": "^3.0.2",
     "pinia": "^3.0.1",
     "radix-vue": "^1.9.17",
     "tailwind-variants": "^0.3.1",

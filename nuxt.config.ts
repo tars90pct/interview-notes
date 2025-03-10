@@ -7,7 +7,11 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   ssr: false,
   devtools: { enabled: true },
-
+  runtimeConfig: {
+    public: {
+      version,
+    },
+  },
   app: {
     baseURL: "/interview-notes/",
     buildAssetsDir: "assets",
@@ -22,6 +26,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/mdc",
     "@nuxtjs/google-fonts",
+    "nuxt-gtag",
   ],
 
   i18n: {
@@ -42,6 +47,11 @@ export default defineNuxtConfig({
     defaultLocale: "zh-tw",
   },
 
+  gtag: {
+    enabled: process.env.NODE_ENV === "production",
+    id: "G-VRMTWBFN8J",
+  },
+
   googleFonts: {
     families: {
       "Noto Serif TC": [400, 700],
@@ -57,12 +67,6 @@ export default defineNuxtConfig({
 
   colorMode: {
     classSuffix: "",
-  },
-
-  runtimeConfig: {
-    public: {
-      version,
-    },
   },
 
   imports: {
