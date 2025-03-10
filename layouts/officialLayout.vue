@@ -11,7 +11,7 @@
             </UiButton>
           </UiDrawerTrigger>
           <UiDrawerContent>
-            <LazyPageSiteMenu :page-metas="data.sideMenus" class="p-2" />
+            <LazyPageSiteMenu :page-metas="data.sideMenus" class="overflow-x-auto p-2" />
             <UiDrawerClose class="absolute right-4 top-3 h-7 w-7" as-child>
               <UiButton variant="ghost" size="icon-sm" class="opacity-50 hover:opacity-100">
                 <Icon name="lucide:x" />
