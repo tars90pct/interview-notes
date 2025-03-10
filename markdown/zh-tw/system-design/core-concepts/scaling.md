@@ -6,7 +6,7 @@
 
   面試者通常理解：Vertical Scaling 實際帶來的複雜性增量遠低於 Horizontal Scaling。若能預估 workload 並確認在可預見的未來可透過 Vertical Scaling 滿足需求，這通常會是比 Horizontal Scaling 更理想的解決方案。許多系統的 Vertical Scaling 潛力可能超乎預期。
 
-  增加 machines 並非沒有代價。擴容時常迫使您處理 **work distribution、data distribution 與 state management** 等問題，這類議題在系統設計面試中經常成為 yellow flags（警示信號），因此值得深入探討。
+  增加 machines 並非沒有代價。擴容時常迫使您處理 **work distribution、data distribution 與 state management** 等問題，這類議題在系統設計面試中經常成為警示信號，因此值得深入探討。
 
   ::TIPS
   經驗不足的面試者常犯兩種錯誤：

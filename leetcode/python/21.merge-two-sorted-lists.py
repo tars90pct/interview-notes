@@ -21,24 +21,21 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         dummy = ListNode()
-        current  = dummy
-        while (list1 != None and list2 != None):
+        current = dummy
+        while list1 and list2:
             if list1.val < list2.val:
                 current.next = list1
-                current = current.next
+                current = list1
                 list1 = list1.next
             else:
                 current.next = list2
-                current = current.next
+                current = list2
                 list2 = list2.next
-        while list1 != None:
+        if list1:
             current.next = list1
-            current = current.next
-            list1 = list1.next
-        while list2 != None:
-            current.next = list2    
-            current = current.next
-            list2 = list2.next
+        if list2:
+            current.next = list2
+        
         return dummy.next
         
 # @lc code=end
