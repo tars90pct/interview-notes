@@ -78,6 +78,30 @@
             "key": "234.palindrome-linked-list"
           }
         ]
+      },
+      {
+        "key": "tree",
+        "icon": "carbon:idea",
+        "children": [
+          {
+            "key": "144.binary-tree-preorder-traversal"
+          },
+          {
+            "key": "145.binary-tree-postorder-traversal"
+          },
+          {
+            "key": "94.binary-tree-inorder-traversal"
+          },
+          {
+            "key": "102.binary-tree-level-order-traversal"
+          },
+          {
+            "key": "107.binary-tree-level-order-traversal-ii"
+          },
+          {
+            "key": "199.binary-tree-right-side-view"
+          }
+        ]
       }
     ]
   },
@@ -104,6 +128,9 @@
           },
           {
             "key": "indexing"
+          },
+          {
+            "key": "communication-protocols"
           }
         ]
       },
