@@ -37,6 +37,9 @@
           },
           {
             "key": "344.reverse-string"
+          },
+          {
+            "key": "209.minimum-size-subarray-sum"
           }
         ]
       },
@@ -100,6 +103,33 @@
           },
           {
             "key": "199.binary-tree-right-side-view"
+          },
+          {
+            "key": "637.average-of-levels-in-binary-tree"
+          },
+          {
+            "key": "429.n-ary-tree-level-order-traversal"
+          },
+          {
+            "key": "515.find-largest-value-in-each-tree-row"
+          },
+          {
+            "key": "116.populating-next-right-pointers-in-each-node"
+          },
+          {
+            "key": "117.populating-next-right-pointers-in-each-node-ii"
+          },
+          {
+            "key": "104.maximum-depth-of-binary-tree"
+          },
+          {
+            "key": "111.minimum-depth-of-binary-tree"
+          },
+          {
+            "key": "226.invert-binary-tree"
+          },
+          {
+            "key": "101.symmetric-tree"
           }
         ]
       }
@@ -131,13 +161,20 @@
           },
           {
             "key": "communication-protocols"
+          },
+          {
+            "key": "security"
           }
         ]
       },
       {
         "key": "key-technologies",
         "icon": "carbon:idea",
-        "children": []
+        "children": [
+          {
+            "key": "database"
+          }
+        ]
       }
     ]
   },
