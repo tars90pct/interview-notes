@@ -183,6 +183,11 @@
             "key": "538.convert-bst-to-greater-tree"
           }
         ]
+      },
+      {
+        "key": "backtracking",
+        "icon": "carbon:idea",
+        "children": []
       }
     ]
   },
@@ -215,9 +220,6 @@
           },
           {
             "key": "security"
-          },
-          {
-            "key": "api-gateway"
           }
         ]
       },
@@ -227,6 +229,12 @@
         "children": [
           {
             "key": "database"
+          },
+          {
+            "key": "api-gateway"
+          },
+          {
+            "key": "load-balancer"
           }
         ]
       }
