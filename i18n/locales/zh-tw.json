@@ -67,6 +67,8 @@
   "indexing": "Indexing",
   "api-gateway": "API Gateway",
   "load-balancer": "Load Balancer",
+  "queue": "Queue",
+  "streams-event-sourcing": "Streams/Event Sourcing",
   "communication-protocols": "Communication Protocols",
   "security": "Security",
   "database": "Database",
