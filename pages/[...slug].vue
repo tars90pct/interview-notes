@@ -90,7 +90,6 @@
           }
         });
       });
-      const { gtag } = useGtag();
       const i18n = useI18n();
       const route = useRoute();
       const router = useRouter();
