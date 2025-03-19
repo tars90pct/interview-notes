@@ -70,8 +70,8 @@
   </div>
 </template>
 <script lang="ts">
-  import pages from "~/assets/pages/index.json";
   import { useBrowserStore } from "~/stores/broswer";
+  import { PAGE_INDEX } from "~/stores/page";
   import { PageMeta } from "~/types/Page";
   import { buildDefineComponentSetup } from "~/utils/internal";
 
@@ -84,7 +84,7 @@
       const broswerStore = useBrowserStore();
       const i18n = useI18n();
       i18n.setLocaleCookie("zh-tw");
-      const sideMenus = PageMeta.OfArray(pages, []);
+      const sideMenus = PageMeta.OfArray(PAGE_INDEX, []);
       return buildDefineComponentSetup(
         {
           data: {
