@@ -1,0 +1,1 @@
+import{q as o,X as s,U as n,Y as r,_ as p,c as a,o as c}from"./CEe5vE5B.js";const u=o({components:{},props:{},setup(e){return s().push("/getting-started"),n(()=>{}),r({data:{},methods:{},stores:{}},{})}});function d(e,t,i,_,f,m){return c(),a("div")}const x=p(u,[["render",d]]);export{x as default};
