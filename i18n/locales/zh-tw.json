@@ -69,6 +69,7 @@
   "load-balancer": "Load Balancer",
   "queue": "Queue",
   "streams-event-sourcing": "Streams/Event Sourcing",
+  "distributed-lock": "Distributed Lock",
   "communication-protocols": "Communication Protocols",
   "security": "Security",
   "database": "Database",

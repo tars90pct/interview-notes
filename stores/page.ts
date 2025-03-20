@@ -245,6 +245,9 @@ export const PAGE_INDEX = [
           {
             key: "streams-event-sourcing",
           },
+          {
+            key: "distributed-lock",
+          },
         ],
       },
     ],
