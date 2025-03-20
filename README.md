@@ -6,7 +6,7 @@ https://tars90pct.github.io/interview-notes/
 
 ```bash
 # npm
-npm install
+npm install 
 ```
 
 ## Development Server
