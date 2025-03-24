@@ -70,6 +70,7 @@
   "queue": "Queue",
   "streams-event-sourcing": "Streams/Event Sourcing",
   "distributed-lock": "Distributed Lock",
+  "distributed-cache": "Distributed Cache",
   "communication-protocols": "Communication Protocols",
   "security": "Security",
   "database": "Database",

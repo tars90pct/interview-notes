@@ -248,6 +248,9 @@ export const PAGE_INDEX = [
           {
             key: "distributed-lock",
           },
+          {
+            key: "distributed-cache",
+          },
         ],
       },
     ],
