@@ -251,6 +251,9 @@ export const PAGE_INDEX = [
           {
             key: "distributed-cache",
           },
+          {
+            key: "cdn",
+          },
         ],
       },
     ],
