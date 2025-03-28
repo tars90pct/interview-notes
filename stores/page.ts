@@ -7,6 +7,79 @@ export const PAGE_INDEX = [
     icon: "material-symbols-light:rocket-launch-outline-rounded",
   },
   {
+    key: "system-design",
+    icon: "material-symbols-light:design-services-rounded",
+    children: [
+      {
+        key: "delivery-framework",
+        icon: "carbon:idea",
+      },
+      {
+        key: "classic",
+        icon: "carbon:idea",
+        children: [
+          {
+            key: "design-a-distributed-metrics-logging-and-aggregation-system",
+          },
+        ],
+      },
+      {
+        key: "core-concepts",
+        icon: "carbon:idea",
+        children: [
+          {
+            key: "scaling",
+          },
+          {
+            key: "cap-theorem",
+          },
+          {
+            key: "locking",
+          },
+          {
+            key: "indexing",
+          },
+          {
+            key: "communication-protocols",
+          },
+          {
+            key: "security",
+          },
+        ],
+      },
+      {
+        key: "key-technologies",
+        icon: "carbon:idea",
+        children: [
+          {
+            key: "database",
+          },
+          {
+            key: "api-gateway",
+          },
+          {
+            key: "load-balancer",
+          },
+          {
+            key: "queue",
+          },
+          {
+            key: "streams-event-sourcing",
+          },
+          {
+            key: "distributed-lock",
+          },
+          {
+            key: "distributed-cache",
+          },
+          {
+            key: "cdn",
+          },
+        ],
+      },
+    ],
+  },
+  {
     key: "problem-solving",
     icon: "hugeicons:leetcode",
     children: [
@@ -191,70 +264,6 @@ export const PAGE_INDEX = [
         key: "backtracking",
         icon: "carbon:idea",
         children: [],
-      },
-    ],
-  },
-  {
-    key: "system-design",
-    icon: "material-symbols-light:design-services-rounded",
-    children: [
-      {
-        key: "delivery-framework",
-        icon: "carbon:idea",
-      },
-      {
-        key: "core-concepts",
-        icon: "carbon:idea",
-        children: [
-          {
-            key: "scaling",
-          },
-          {
-            key: "cap-theorem",
-          },
-          {
-            key: "locking",
-          },
-          {
-            key: "indexing",
-          },
-          {
-            key: "communication-protocols",
-          },
-          {
-            key: "security",
-          },
-        ],
-      },
-      {
-        key: "key-technologies",
-        icon: "carbon:idea",
-        children: [
-          {
-            key: "database",
-          },
-          {
-            key: "api-gateway",
-          },
-          {
-            key: "load-balancer",
-          },
-          {
-            key: "queue",
-          },
-          {
-            key: "streams-event-sourcing",
-          },
-          {
-            key: "distributed-lock",
-          },
-          {
-            key: "distributed-cache",
-          },
-          {
-            key: "cdn",
-          },
-        ],
       },
     ],
   },

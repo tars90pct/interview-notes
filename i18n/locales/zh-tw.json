@@ -72,6 +72,8 @@
   "distributed-lock": "Distributed Lock",
   "distributed-cache": "Distributed Cache",
   "cdn": "CDN",
+  "classic": "經典題目",
+  "design-a-distributed-metrics-logging-and-aggregation-system": "Design a Distributed Metrics Logging and Aggregation System",
   "communication-protocols": "Communication Protocols",
   "security": "Security",
   "database": "Database",
