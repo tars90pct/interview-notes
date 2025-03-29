@@ -18,21 +18,9 @@ class Solution:
             while stack and heights[stack[-1]] > heights[i]:
                 mid_index = stack.pop()
                 if stack:
-                    result = max(result, (i - stack[-1] - 1) * heights[mid_index])
+                    result = max(result, heights[mid_index] * (i - stack[-1] - 1))
             stack.append(i)
         return result
-        # heights.insert(0, 0)
-        # heights.append(0)
-        # stack = [0]
-        # result = 0
-        # for i in range(1, len(heights)):
-        #     while stack and heights[i] < heights[stack[-1]]:
-        #         mid_height = heights[stack[-1]]
-        #         stack.pop()
-        #         if stack:
-        #             # area = width * height
-        #             area = (i - stack[-1] - 1) * mid_height
-        #             result = max(area, result)
-        #     stack.append(i)
-        # return result
 # @lc code=end
+# [0, 2,1,5,6,2,3, 0]
+Solution().largestRectangleArea([2,1,5,6,2,3])
