@@ -21,6 +21,9 @@ export const PAGE_INDEX = [
           {
             key: "design-a-distributed-metrics-logging-and-aggregation-system",
           },
+          {
+            key: "design-a-distributed-stream-processing-system-like-kafka"
+          }
         ],
       },
       {

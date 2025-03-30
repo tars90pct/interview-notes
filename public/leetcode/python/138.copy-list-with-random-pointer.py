@@ -26,20 +26,22 @@ class Solution(object):
         :rtype: Node
         """
         if head is None:
-            return head
+            return None
         lookup = {}
-        curr = head
-        while curr:
-            lookup[curr] = Node(curr.val)
-            curr = curr.next
-        
-        curr = head
-        while curr:
-            node = lookup.get(curr)
-            node.next = lookup.get(curr.next)
-            node.random = lookup.get(curr.random)
-            curr = curr.next
-        
+        current = head
+        while current:
+            lookup[current] = Node(
+                current.val
+            )
+            current = current.next
+        current = head
+        while current:
+            node = lookup[current]
+            if current.next:
+                node.next = lookup[current.next]
+            if current.random:
+                node.random = lookup[current.random]
+            current = current.next
         return lookup.get(head)
 # @lc code=end
 

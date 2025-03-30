@@ -23,20 +23,39 @@ class Solution(object):
         dummy = ListNode()
         current = dummy
         while list1 and list2:
-            if list1.val < list2.val:
-                current.next = list1
-                current = list1
-                list1 = list1.next
-            else:
-                current.next = list2
-                current = list2
+            node = None
+            if list1.val > list2.val:
+                node = list2
                 list2 = list2.next
+            else:
+                node = list1
+                list1 = list1.next
+            current.next = node
+            current = current.next
+
         if list1:
             current.next = list1
         if list2:
             current.next = list2
-        
+
         return dummy.next
+
+        # dummy = ListNode()
+        # current = dummy
+        # while list1 and list2:
+        #     if list1.val < list2.val:
+        #         current.next = list1
+        #         current = list1
+        #         list1 = list1.next
+        #     else:
+        #         current.next = list2
+        #         current = list2
+        #         list2 = list2.next
+        # if list1:
+        #     current.next = list1
+        # if list2:
+        #     current.next = list2
+        
+        # return dummy.next
         
 # @lc code=end
-
