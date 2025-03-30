@@ -1,0 +1,1 @@
+import{q as o,U as s,Y as t,_ as n,c as r,o as p,y as a}from"./BXsoXF5c.js";const c=o({components:{},props:{},setup(e){return s(()=>{}),t({data:{},methods:{},stores:{}},{})}}),d={class:"rounded-sm bg-primary/5 px-2 py-1"};function u(e,i,m,_,f,l){return p(),r("div",d,[a(e.$slots,"default")])}const h=n(c,[["render",u]]);export{h as default};

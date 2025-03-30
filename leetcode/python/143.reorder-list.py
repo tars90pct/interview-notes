@@ -19,31 +19,67 @@ class Solution(object):
         """
         :type head: Optional[ListNode]
         :rtype: None Do not return anything, modify head in-place instead.
-        """
+        # """
+
+        # find mid
         fast = head
         slow = head
-
         while fast and fast.next:
-            fast = fast.next.next
             slow = slow.next
-
-        second = slow.next
+            fast = fast.next.next
+        right_end = slow.next
         slow.next = None
-        node = None
+        left = head
 
-        while second:
-            temp = second.next
-            second.next = node
-            node = second
-            second = temp
+        def reverse(prev, curr):
+            if curr is None:
+                return prev
+            temp = curr.next
+            curr.next = prev
+            return reverse(curr, temp)
+        right = reverse(None, right_end)
 
-        first = head
-        second = node
+        dummy = ListNode()
+        current = dummy
+        while left and right:
+            current.next = left
+            left = left.next
+            current = current.next
+            current.next = right
+            right = right.next
+            current = current.next
+        
+        if left:
+            current.next = left
+        if right:
+            current.next = right
+        
+        return dummy.next
 
-        while second:
-            temp1, temp2 = first.next, second.next
-            first.next, second.next = second, temp1
-            first, second = temp1, temp2
+        # fast = head
+        # slow = head
+
+        # while fast and fast.next:
+        #     fast = fast.next.next
+        #     slow = slow.next
+
+        # second = slow.next
+        # slow.next = None
+        # node = None
+
+        # while second:
+        #     temp = second.next
+        #     second.next = node
+        #     node = second
+        #     second = temp
+
+        # first = head
+        # second = node
+
+        # while second:
+        #     temp1, temp2 = first.next, second.next
+        #     first.next, second.next = second, temp1
+        #     first, second = temp1, temp2
 
         
         

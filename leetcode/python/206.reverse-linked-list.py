@@ -20,16 +20,12 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        def link(prev, head):
-            if head is None:
-                return None
-            next = head.next
-            head.next = prev
-            if next is None:
-                return head
-            return link(head, next)
-        
-        return link(None, head)
-        
+        def reverse(prev, curr):
+            if curr is None:
+                return prev
+            temp = curr.next
+            curr.next = prev
+            return reverse(curr, temp)
+        return reverse(None, head)
 # @lc code=end
 

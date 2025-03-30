@@ -27,6 +27,14 @@ class Solution(object):
             if slow == fast:
                 return True
         return False
+        # if head is None:
+        #     return False
+        # slow = head
+        # fast = head
+        # while fast and fast.next:
+        #     slow = slow.next
+        #     fast = fast.next.next
+        #     if slow == fast:
+        #         return True
+        # return False
 # @lc code=end
-
-1,2,3
