@@ -377,9 +377,9 @@
     - 支援即時儀表板與告警系統
   - Stream Enrichment實作討論
 
-    有幾種方式可以實作 即時數據增強（Stream Enrichment），但關鍵在於如何**高效地查詢用戶資訊表（User Info Table）**來豐富事件流數據。
+    有幾種方式可以實作 即時數據增強（Stream Enrichment），但關鍵在於如何高效地查詢用戶資訊表（User Info Table）來豐富事件流數據。
 
-    ## ![stream-enrichment]({{BASEURL}}/markdown/zh-tw/system-design/classic/stream-enrichment.png "stream-enrichment")
+![stream-enrichment]({{BASEURL}}/markdown/zh-tw/system-design/classic/stream-enrichment.png "stream-enrichment")
 
     - 直接查詢資料庫
       - 當 Flink 消費者（Flink Consumer）收到新的使用者點擊事件

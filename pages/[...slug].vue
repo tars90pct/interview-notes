@@ -50,7 +50,10 @@
   import { constructSyntax, MarkdownFileCodes, useI18n, useRoute } from "#imports";
   import { usePageStore } from "~/stores/page";
   import { buildDefineComponentSetup } from "~/utils/internal";
+  import { fetchFile, fetchLeetcode, findFiles } from "~/utils/markdown";
+  import { useHead, useRuntimeConfig } from "nuxt/app";
   import { defineComponent, onMounted, ref, watch } from "vue";
+  import { useRouter } from "vue-router";
   import type { Crumbs } from "~/components/Ui/Breadcrumbs.vue";
 
   export default defineComponent({
@@ -81,7 +84,8 @@
         let text = (await $fetch(`/markdown/${i18n.getLocaleCookie()}/${pageMeta.getLink()}.md`, {
           responseType: "text",
         })) as string;
-        markdown.value = text.replace("{{BASEURL}}", baseURL);
+
+        markdown.value = text.replace(new RegExp("{{BASEURL}}", "g"), baseURL);
         findFiles(MarkdownFileCodes.LEETCODE, markdown.value).forEach(async (path) => {
           const content = await fetchLeetcode(baseURL, path);
           if (content) {
