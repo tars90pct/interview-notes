@@ -1,6 +1,19 @@
 <template>
   <div class="flex flex-col gap-3 p-4">
-    <UiBreadcrumbs :items="data.crumbs" class="hidden md:flex" />
+    <div class="flex flex-row justify-between">
+      <UiBreadcrumbs :items="data.crumbs" class="hidden md:flex" />
+      <UiButton
+        variant="expandIcon"
+        @click="
+          () => {
+            copyToClipboard(shortLink);
+          }
+        "
+      >
+        <Icon name="mynaui:share" />
+      </UiButton>
+    </div>
+
     <div class="flex h-[calc(100dvh-129px)] w-full flex-col overflow-x-auto p-4">
       <MDC
         :key="markdown"
@@ -54,6 +67,7 @@
         const fullUrl = `${protocol}//${hostname}${port}`;
         const baseURL = `${fullUrl}${useRuntimeConfig().app.baseURL}`;
 
+        shortLink.value = `${window.location.origin}/interview-notes/shortcut?link=${currentPageIndex}`;
         useHead({
           title: i18n.t(pageMeta.key),
         });
@@ -96,6 +110,7 @@
       const markdown = ref<string>("");
       const pageStore = usePageStore();
       const paths = route.params.slug as string[];
+      const shortLink = ref<string>("");
       const pageMeta = pageStore.getPageMeta(paths)!;
       if (!pageMeta) {
         router.push("/");
@@ -129,6 +144,7 @@
             crumbs,
             nextPage,
             prevPage,
+            currentPageIndex,
           },
           methods: {
             goTo,
@@ -137,6 +153,7 @@
         },
         {
           markdown,
+          shortLink,
         }
       );
     },
