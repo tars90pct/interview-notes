@@ -19,6 +19,21 @@
 
 簡而言之：這是一個超高吞吐量的訊息傳輸系統，重點在於將海量資料從生產者端傳遞到多個消費者端，不需要追求極速傳輸，也無需複雜機制或交易功能，只需最簡潔的方式實現大規模資料傳輸。
 
+使用場景：
+
+- 訊息佇列（Message Queue，MQ）
+  - 消費者（Consumer）可以選擇何時從佇列中讀取資料。
+  - 訊息可以長時間存在於佇列中，直到消費者讀取。
+  - 適合處理異步（Asynchronous）工作，例如工作排程（Job Scheduling）。
+  - 也適合需要依照順序處理的場合：當User進入活動服務時，Event Service會將User訊息丟進Waiting Queue，然後繼續處理之前存入Waiting Queue中的訊息。(Ticket Master Waiting Queue)
+  - 解耦服務架構：例如Leetcode服務會將使用者上傳的程式碼交至不同的Consumer runtime
+- 串流處理（Stream Processing）
+  - 接近Real-time的廣告點擊數據統計（Ad Click Aggregator）
+    - 當使用者點擊廣告（如 Nike 廣告），該點擊事件會被放入 Kafka 佇列中。消費者（如 Apache Flink）即時讀取該串流數據，並進行累加計算。最終，我們可以向廣告商提供「這則廣告的點擊數據」。
+  - Pub/Sub
+    - 如果希望一個訊息可以同時被多個消費者處理，則可以使用Pub/Sub模式。
+    - 即時通訊（Messenger）和Facebook Live 直播評論
+
 ## Functional Requirements
 
 - 數據收集與傳輸
@@ -74,12 +89,131 @@
 
   針對Topic讀取messages/records，它會持續向Broker輪詢關於該主題上的任何訊息。在每次輪詢請求中，消費者會指定它最後接收到的訊息以及其他一些可配置的參數。消費者通常會是消費者群組（Consumer Group）的一部分。一般來說，不是單一消費者監聽一個主題（Topic），而是消費者群組監聽主題。消費者群組由多個消費者組成，與 RabbitMQ 不同，Kafka 的消費者群組允許多個消費者共享一個 Topic，但同一條訊息只會被其中一個消費者處理。
 
+- Messages:
+  - 由headers, key, value, timestamp組成
+
 ## API or System Interface
+
+- Producer create and publish a message
+
+```
+...
+const producer = kafka.producer()
+producer.send({
+  topic: 'topic-name',
+  messages: [
+    {key: 'key1', value: 'value1'},
+    {key: 'key2', value: 'value2'},
+  ]
+})
+
+```
+
+- When Kafka receives messages from producers:
+
+  - Message中有Partition Key -> 使用Partition Key, 沒有就Round-Robin分配一個
+  - 確定Broker(擁有Partition的)，傳送訊息至Broker
+  - Broker appends message to correct partition
+  - 每則message 都有一個offset
+
+- Consumer reads next message based on offset:
+  - consumer會定期的commit當下offset至Kafka。
+  - 由於commit offset的特性，當consumer失能時，另外一個consumer便可以接替上一個任務。
+
+```
+const consumer = kafka.consumer({groupId: 'group-id'})
+consumer.subscribe({topic: 'topic-name'})
+consumer.run((message)=>{
+  // callback
+})
+```
 
 ## High Level Design
 
+![kafka-1]({{BASEURL}}/markdown/zh-tw/system-design/classic/kafka-1.png "kafka-1")
+
 ## Deep Dives
 
+- Scalability
+
+  - 約束條件:
+    - Kafka 沒有對message大小的硬性限制（受硬體條件影響）
+    - 建議單個message大小不要超過 1MB，以確保最佳效能，避免過度消耗網路或記憶體。
+    - 常見錯誤：將完整的媒體檔案（如影片）存入 Kafka
+    - 更好的做法：在 Kafka 內部只存儲 S3 URL，而不存影片本身。
+    - 在高效能硬體上，單個 Kafka Broker 可存儲 約 1TB 的數據，並可處理約 10,000 條message/秒。
+  - 擴展 Kafka 的方法
+    - 增加 Broker 數量: 增加伺服器，提升記憶體與磁碟容量，以便儲存與處理更多消息。
+    - 選擇適當的 Partition Key（最重要）
+      - Partition Key 決定數據如何分佈在 Brokers 上。
+      - 選擇不佳的 Key 可能導致 熱分區（Hot Partition），即某些分區流量過載，而其他分區閒置。
+      - 良好的 Partition Key 應該能均勻分佈數據。
+    - 熱分區（Hot Partition）處理
+      - 熱分區問題：如果某個 Key 的數據過於集中，可能導致某個 Broker 負載過高，影響效能。廣告點擊分析的例子來說：
+        - 數據格式：User A 點擊了 Ad B
+        - 常見做法：根據 Ad ID 進行分區。
+        - 問題：如果 Nike 發佈 LeBron James 新廣告，該廣告的流量可能會極度集中在某個分區，導致負載不均。
+      - 解決熱分區的方法：
+        - 移除 Partition Key（適用於不要求順序的場景）: 若數據無需有序，則可將消息隨機分佈到不同分區。
+        - 使用複合 Partition Key（適用於需要保持局部順序的場景）
+          - 例如：Ad ID: 隨機數（1~10）: 這樣能確保相同的 Ad ID 數據分佈在 10 個不同分區，降低單一分區的負擔。
+          - 也可使用 Ad ID + User ID，或使用 User ID 前綴 來達到分流效果。
+      - Backpressure
+        - 讓 Producer 檢測 Kafka 負載，若某個分區超載則減慢發送速率。適用於某些場景，但並非所有系統都適用。
+    - 雲端Kafka 服務（Managed Kafka Services）
+      - 這些服務能自動處理許多擴展問題，如 自動擴展 Broker，但仍需手動選擇 Partition Key。
+
+- Fault Tolerance & Durability
+
+  - PartitionLeader Partition 與 Follower Partition
+    - Kafka 叢集由 Leader Partition 和 Follower Partition 組成。
+    - Leader Partition：處理讀寫請求。
+    - Follower Partition：負責複製 Leader Partition 的數據，當 Leader 故障時可接管。
+    - Kafka 叢集設定檔（config file）中有兩個重要參數：
+      - acks（確認機制）:決定寫入時需要多少 Follower 確認消息後才能繼續處理下一條消息。
+        - acks=all：所有 Follower 需確認，確保最大耐久性（Durability）。
+        - acks=1 或更小：僅需部分 Follower 確認，提高效能，但降低耐久性。
+      - replication.factor（複製因子）: 決定每個 Partition 需要多少個 Follower 來進行複製。
+        - 預設為 3（1 個 Leader + 2 個 Follower）。
+        - 增加數值 可提高數據耐久性，但會消耗更多儲存空間。
+        - 減少數值 可節省空間，但會降低容錯能力。
+  - Consumer 失敗處理
+    - 單一 Consumer 故障
+      - Consumer 讀取消息後，會提交 offset 給 Kafka。
+      - 若 Consumer離線，重新啟動後會從最後提交的 offset 繼續處理。
+    - Consumer Group 內有 Consumer 故障
+      - Consumer Group 內，每個 Consumer 負責不同的 Partition 範圍。
+      - 若某個 Consumer離線，Kafka 會進行 Rebalancing，將該 Partition 分配給其他 Consumer。
+  - Offset Commit 時機決定了數據是否可靠處理，請確認任務成功執行後再提交。
+
+- Error & Retries
+
+  - Producer Retry:
+    - retries
+    - 支持指數退避（Exponential Backoff）：可以設定間隔時間逐漸增長。
+    - Idempotent Producer Mode: 確保消息不重複
+  - Consumer Retry:
+    - Kafka 不內建 Consumer 端的重試機制
+    - 常見的重試模式
+      - 主題（Topic）架構
+        - Main Topic：存放待處理的消息，例如 WebCrawler 需要爬取的 URL。
+        - Retry Topic：當 Consumer 失敗時，將消息放入 Retry Topic 重新嘗試。
+        - Dead Letter Queue（DLQ）：若超過最大重試次數（如 5 次），消息將被移至 DLQ 供工程師調查。
+      - 處理流程
+        - Consumer 從 Main Topic 讀取 URL 並嘗試爬取。
+        - 若請求失敗，則將 URL 轉存至 Retry Topic，記錄重試次數。
+        - Retry Consumer 負責讀取 Retry Topic 並重新執行任務。若重試超過 5 次，則將消息放入 DLQ，不再處理。
+  - Dead Letter Queue（DLQ）
+    - 失敗超過最大重試次數的消息將存放於 DLQ Topic。
+    - 無 Consumer 會讀取 DLQ，消息將長期保留（或定期清除）。
+    - 工程師可手動檢查 DLQ，調查失敗原因並進行 Debug。
+
+- Performance Optimizations
+  - Batch messages in producer
+  - Compress messages in producer
+- Retention Poicies
+  - retention.ms (default 7 days)
+  - retention.bytes (default 1 GB)
 - 為什麼訊息代理（Message Brokers）不適用?
   如果你熟悉訊息代理（Message Brokers，如 RabbitMQ、ActiveMQ 等），你可能會認為它們能夠解決這個問題。但實際上，它們並不適用。讓我們以 RabbitMQ 為例，來看看它為何無法滿足需求。
 

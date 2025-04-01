@@ -23,5 +23,19 @@ class Solution:
         result = []
         backtracking([], result, 0)
         return result
+        # nums.sort()
+        # def backtracking(path, result, start):
+        #     result.append(path[:])
+        #     used = set()
+        #     for i in range(start, len(nums)):
+        #         if nums[i] in used:
+        #             continue
+        #         used.add(nums[i])
+        #         path.append(nums[i])
+        #         backtracking(path, result, i + 1)
+        #         path.pop()
+        # result = []
+        # backtracking([], result, 0)
+        # return result
 # @lc code=end
 

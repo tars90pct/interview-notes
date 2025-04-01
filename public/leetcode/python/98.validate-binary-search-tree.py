@@ -12,17 +12,28 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def validate(left, right, root):
-            if not root:
+    def isValidBST(self, root) -> bool:
+        if root is None:
+            return True
+        def validate(left, root, right):
+            if root is None:
                 return True
-            if root.val > left and right > root.val:
-                if not validate(left , root.val, root.left):
-                    return False
-                return validate(root.val , right, root.right)
+            if left < root.val and root.val < right:
+                return validate(left, root.left, root.val) and validate(root.val, root.right, right)
             else:
                 return False
-        return validate(float("-inf"), float("inf"), root)
+        return validate(float('-inf'), root, float('inf'))
+        # def validate(left, right, root):
+        #     if not root:
+        #         return True
+        #     if root.val > left and right > root.val:
+        #         if not validate(left , root.val, root.left):
+        #             return False
+        #         return validate(root.val , right, root.right)
+        #     else:
+        #         return False
+        # return validate(float("-inf"), float("inf"), root)
         
 # @lc code=end
 
+Solution().isValidBST(1)

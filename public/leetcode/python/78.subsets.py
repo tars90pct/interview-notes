@@ -14,9 +14,9 @@ class Solution:
             for i in range(start, len(nums)):
                 path.append(nums[i])
                 backtracking(path, result, i + 1)
-                path.pop()
+                path.remove(nums[i])
         result = []
-        backtracking([], result, 0)
+        backtracking([], result ,0)
         return result
 # @lc code=end
 
