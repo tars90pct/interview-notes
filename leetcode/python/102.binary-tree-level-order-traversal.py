@@ -20,26 +20,20 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: List[List[int]]
         """
-        res = []
         if not root:
-            return res
-        
-        q = deque()
-        q.append(root)
-    
-        while q:
-            same_level = []
-
-            for _ in range(len(q)):
-                node = q.popleft()
-                same_level.append(node.val)
-
+            return []
+        result = []
+        queue = deque([root])
+        while queue:
+            temp = []
+            for i in range(len(queue)):
+                node = queue.popleft()
+                temp.append(node.val)
                 if node.left:
-                    q.append(node.left)
+                    queue.append(node.left)
                 if node.right:
-                    q.append(node.right)
-            
-            res.append(same_level)
-        return res
+                    queue.append(node.right)
+            result.append(temp)
+        return result
 # @lc code=end
 

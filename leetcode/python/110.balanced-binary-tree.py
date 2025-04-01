@@ -1,39 +1,29 @@
 #
-# @lc app=leetcode id=110 lang=python
+# @lc app=leetcode id=110 lang=python3
 #
 # [110] Balanced Binary Tree
 #
 
 # @lc code=start
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def isBalanced(self, root):
-        return self.height(root) != -1
-
-    def height(self, node):
-        if not node:
-            return 0  # Base case: empty tree has height 0
-
-        # Recursively get the height of the left subtree
-        leftHeight = self.height(node.left)
-        if leftHeight == -1:
-            return -1  # If the left subtree is unbalanced, return -1
-
-        # Recursively get the height of the right subtree
-        rightHeight = self.height(node.right)
-        if rightHeight == -1:
-            return -1  # If the right subtree is unbalanced, return -1
-
-        # If the height difference between left and right subtrees is more than 1, return -1
-        if abs(leftHeight - rightHeight) > 1:
-            return -1
-
-        # Return the height of the current node
-        return max(leftHeight, rightHeight) + 1
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        result = True
+        def get_height(root):
+            if not root:
+                return 0
+            l = get_height(root.left)
+            r = get_height(root.right)
+            if abs(l - r) > 1:
+                nonlocal result
+                result = False
+            return max(l, r) + 1
+        get_height(root)
+        return result
 # @lc code=end
 

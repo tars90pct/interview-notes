@@ -21,16 +21,21 @@ class Solution(object):
         """
         if not root:
             return 0
-        queue = deque([root])
-        depth = 0
-        while queue:
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-            depth += 1
-        return depth
+        left = self.maxDepth(root.left) + 1
+        right = self.maxDepth(root.right) + 1
+        return max(left, right)
+        # if not root:
+        #     return 0
+        # queue = deque([root])
+        # depth = 0
+        # while queue:
+        #     for _ in range(len(queue)):
+        #         node = queue.popleft()
+        #         if node.left:
+        #             queue.append(node.left)
+        #         if node.right:
+        #             queue.append(node.right)
+        #     depth += 1
+        # return depth
 # @lc code=end
 

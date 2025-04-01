@@ -3,7 +3,8 @@
 #
 # [226] Invert Binary Tree
 #
-
+# Time complexity: O(n)
+# Space complexity: O(n)
 # @lc code=start
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -19,11 +20,11 @@ class Solution(object):
         """
         if root is None:
             return None
-        
-        left = self.invertTree(root.left)
-        right = self.invertTree(root.right)
-        root.left = right
-        root.right = left
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        temp = root.left
+        root.left = root.right
+        root.right = temp
         return root
 # @lc code=end
 

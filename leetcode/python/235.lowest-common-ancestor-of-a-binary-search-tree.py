@@ -14,19 +14,11 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        def dfs(root, p, q):
-            if root is None:
-                return None
-            if root == q:
-                return root
-            if root == p:
-                return root
-            
-            if p.val > root.val and q.val > root.val:
-                return dfs(root.right, p, q)
-            if p.val < root.val and q.val < root.val:
-                return dfs(root.left, p, q)
-            return root
-        return dfs(root, p, q)
+        if root.val > q.val and root.val > p.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        if root.val < q.val and root.val < p.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+        return root
+        
 # @lc code=end
 
