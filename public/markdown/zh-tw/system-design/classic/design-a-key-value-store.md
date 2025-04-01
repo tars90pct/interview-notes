@@ -1,5 +1,7 @@
 # Design a Key-Value Store
 
+TBD
+
 ## 資料來源：
 
 - [www.educative.io](https://www.educative.io/courses/grokking-the-system-design-interview/system-design-the-key-value-store)
