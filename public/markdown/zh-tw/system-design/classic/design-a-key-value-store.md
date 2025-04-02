@@ -104,7 +104,7 @@ Key-Value Store，常被視為分散式雜湊表（Distributed Hash Table, DHT�
       - FIFO (First In First Out，先進先出)
 - 分散式版：
 
-  - Partition使用 Consistent Hashing（一致性雜湊）。
+  - Consistent Hashing（一致性雜湊）。
     - 原理：將key和節點node映射到一個虛擬環狀空間（hash ring）。
     - Pros
       - 新增或移除節點時，僅需重新映射「鄰近」的資料，避免大規模資料搬移。
