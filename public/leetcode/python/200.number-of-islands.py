@@ -11,27 +11,34 @@ from typing import List
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         def dfs(i, j):
-            if i >= len(grid) or i < 0:
+            if i < 0 or i >= len(grid):
                 return
-            if j >= len(grid[i]) or j < 0:
-                return
-            if grid[i][j] == -1:
+            if j < 0 or j >= len(grid[i]):
                 return
             if grid[i][j] == '0':
                 return
-            grid[i][j] = -1
-            dfs(i - 1, j)
-            dfs(i + 1, j)
-            dfs(i, j - 1)
-            dfs(i, j + 1)
-        
+
+            grid[i][j] = '0'
+            for loc in [
+                (i + 1, j),
+                (i - 1, j),
+                (i, j + 1),
+                (i, j - 1)
+            ]:
+                dfs(loc[0], loc[1])
         result = 0
         for i in range(len(grid)):
             for j in range(len(grid[i])):
                 if grid[i][j] == '1':
+                    dfs(i, j)
                     result += 1
-                dfs(i, j)
         return result
         
 # @lc code=end
-
+Solution().numIslands(
+    [
+        ["1","1","1","1","0"],
+        ["1","1","0","1","0"],
+        ["1","1","0","0","0"],
+        ["0","0","0","0","0"]
+        ])
