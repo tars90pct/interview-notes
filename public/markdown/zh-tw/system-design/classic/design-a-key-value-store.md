@@ -231,23 +231,23 @@ Key-Value Store，常被視為分散式雜湊表（Distributed Hash Table, DHT�
 
   - LSM Tree - Log-Structured Merge Tree
 
-        種針對高寫入吞吐量優化的磁碟資料結構。許多現代 Key-Value Store（如 Cassandra, RocksDB, LevelDB）使用 LSM Tree 作為底層儲存引擎。將隨機寫入轉換為順序寫入，大幅提高寫入效能，特別是在使用傳統 HDD 時（對 SSD 也有益處）。
+    一種針對高寫入吞吐量優化的磁碟資料結構。許多現代 Key-Value Store（如 Cassandra, RocksDB, LevelDB）使用 LSM Tree 作為底層儲存引擎。將隨機寫入轉換為順序寫入，大幅提高寫入效能，特別是在使用傳統 HDD 時（對 SSD 也有益處）。
 
-        - 機制：
-          - Memtable: 一個在記憶體中的排序資料結構（如紅黑樹、跳表）。所有寫入請求首先進入 Memtable。
-          - Commit Log / Write-Ahead Log (WAL): 為了持久性，寫入 Memtable 的同時，操作也會以順序追加的方式寫入磁碟上的 Commit Log。如果節點崩潰，可以通過重播 Commit Log 恢復 Memtable。
-          - SSTable (Sorted String Table): 當 Memtable 達到一定大小後，會被「凍結」並以排序好的、不可變的形式刷新 (Flush) 到磁碟上，成為一個 SSTable 文件。
-          - 多層級 SSTables: 隨著時間推移，磁碟上會累積多個 SSTable 文件，通常會分層組織（Level 0, Level 1, ...）。
-          - Compaction (合併): 後台會定期執行 Compaction 操作，將來自同一層級或不同層級的多個 SSTable 合併成新的、更大的 SSTable。這個過程會：
-            - 真正刪除被標記為刪除的鍵。
-            - 合併同一鍵的多個版本，只保留最新版本。
-            - 保持數據排序。
-            - 減少 SSTable 文件數量，優化讀取效能。
-        - 讀寫特性：
-          - 寫入： 非常快，主要是記憶體操作和順序磁碟寫入 (Commit Log)。
-          - 讀取： 可能較慢，因為需要依次檢查 Memtable、Level 0 的 SSTables、Level 1 的 SSTables... 直到找到數據或確認不存在。這個過程稱為「讀取放大」(Read Amplification)。
-          - 空間放大 (Space Amplification): 在 Compaction 發生前，舊版本和已刪除的數據仍然佔用磁碟空間。
-          - 布隆過濾器 (Bloom Filters) 常被用於快速判斷一個鍵是否可能存在於某個 SSTable 中，如果 Bloom Filter 說不存在，就無需讀取該 SSTable，可以顯著加速讀取不存在的鍵。
+    - 機制：
+      - Memtable: 一個在記憶體中的排序資料結構（如紅黑樹、跳表）。所有寫入請求首先進入 Memtable。
+      - Commit Log / Write-Ahead Log (WAL): 為了持久性，寫入 Memtable 的同時，操作也會以順序追加的方式寫入磁碟上的 Commit Log。如果節點崩潰，可以通過重播 Commit Log 恢復 Memtable。
+      - SSTable (Sorted String Table): 當 Memtable 達到一定大小後，會被「凍結」並以排序好的、不可變的形式刷新 (Flush) 到磁碟上，成為一個 SSTable 文件。
+      - 多層級 SSTables: 隨著時間推移，磁碟上會累積多個 SSTable 文件，通常會分層組織（Level 0, Level 1, ...）。
+      - Compaction (合併): 後台會定期執行 Compaction 操作，將來自同一層級或不同層級的多個 SSTable 合併成新的、更大的 SSTable。這個過程會：
+        - 真正刪除被標記為刪除的鍵。
+        - 合併同一鍵的多個版本，只保留最新版本。
+        - 保持數據排序。
+        - 減少 SSTable 文件數量，優化讀取效能。
+    - 讀寫特性：
+      - 寫入： 非常快，主要是記憶體操作和順序磁碟寫入 (Commit Log)。
+      - 讀取： 可能較慢，因為需要依次檢查 Memtable、Level 0 的 SSTables、Level 1 的 SSTables... 直到找到數據或確認不存在。這個過程稱為「讀取放大」(Read Amplification)。
+      - 空間放大 (Space Amplification): 在 Compaction 發生前，舊版本和已刪除的數據仍然佔用磁碟空間。
+      - 布隆過濾器 (Bloom Filters) 常被用於快速判斷一個鍵是否可能存在於某個 SSTable 中，如果 Bloom Filter 說不存在，就無需讀取該 SSTable，可以顯著加速讀取不存在的鍵。
 
 - Performance & Operational Considerations
 
