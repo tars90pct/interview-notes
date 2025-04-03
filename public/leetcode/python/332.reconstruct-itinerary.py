@@ -10,20 +10,17 @@ from typing import List
 
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        targets = defaultdict(list)
-        for ticket in tickets:
-            targets[ticket[0]].append(ticket[1]) 
-        
-        for key in targets:
-            targets[key].sort(reverse=True)
-        
+        itinerary = {}
+        for t in sorted(tickets, reverse=True):
+            itinerary[t[0]] = itinerary.get(t[0], [])
+            itinerary[t[0]].append(t[1])
+        st = ['JFK']
         result = []
-        def backtracking(airport, targets, result):
-            while targets[airport]:
-                next_airport = targets[airport].pop()  # 弹出下一个机场
-                backtracking(next_airport, targets, result)  # 递归调用回溯函数进行深度优先搜索
-            result.append(airport)
-        backtracking("JFK", targets, result)
+        while st:
+            if itinerary.get(st[-1]):
+                st.append(itinerary[st[-1]].pop())
+            else:
+                result.append(st.pop())
         return result[::-1]
         
 # @lc code=end
