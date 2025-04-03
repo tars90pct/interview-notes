@@ -7,11 +7,11 @@
 - 分為recursive和stack + while的做法
 - 看起來很簡單但推薦至少做一下stack + while(特別是inorder)，實作上不太一樣
 - recursive的做法只需要記得修改中間節點的順序
-  - preorder: left, self, right
-  - inorder: self, left, right,
+  - preorder: self, left, right
+  - inorder: left, self, right
   - postorder: left, right, self
 - stack + while 要用通用模版的話有雙色標記法或是空指針法
-  - 因為stack的關係，順序會跟上面不同（包含self)
+  - 因為stack的關係，順序會跟上面不同(包含self)
   - preorder: right, left, self
   - inorder: right, self, left
   - postorder: self, right, left
