@@ -76,6 +76,7 @@
   "design-a-distributed-metrics-logging-and-aggregation-system": "Design a Distributed Metrics Logging and Aggregation System",
   "design-a-distributed-stream-processing-system-like-kafka": "Design a Distributed Stream Processing System like Kafka",
   "design-a-key-value-store": "Design a Key Value Store",
+  "design-the-k-most-shared-articles-in-various-time-windows-24-hours-1-hour-5-minutes": "Identify the K Most Shared Articles in Various Time Windows (24 hours, 1 hour, 5 minutes)",
   "communication-protocols": "Communication Protocols",
   "security": "Security",
   "database": "Database",
