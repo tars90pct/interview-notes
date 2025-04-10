@@ -9,16 +9,27 @@ class Solution:
     def jump(self, nums: List[int]) -> int:
         if len(nums) <= 1:
             return 0
-        next_distance = 0
+        next_dist = 0
         cover = 0
         result = 0
         for i in range(len(nums)):
-            next_distance = max(next_distance, nums[i] + i)
-            if next_distance >= len(nums) - 1:
+            next_dist = max(next_dist, i + nums[i])
+            if next_dist >= len(nums) - 1:
                 return result + 1
-            if i == cover:
+            if cover == i:
                 result += 1
-                cover = next_distance
+                cover = next_dist
         return result
+        # next_distance = 0
+        # cover = 0
+        # result = 0
+        # for i in range(len(nums)):
+        #     next_distance = max(next_distance, nums[i] + i)
+        #     if next_distance >= len(nums) - 1:
+        #         return result + 1
+        #     if i == cover:
+        #         result += 1
+        #         cover = next_distance
+        # return result
 # @lc code=end
 
