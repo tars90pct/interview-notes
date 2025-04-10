@@ -15,10 +15,23 @@ class Solution:
         left = 0
         right = 0
         for i in range(len(s)):
-            right = max(right, right_most[s[i]])
-            if right == i:
+            right = max(right,right_most[s[i]])
+            if i == right:
                 result.append(right - left + 1)
                 left = i + 1
         return result
+        # right_most = {}
+        # for i in range(len(s)):
+        #     right_most[s[i]] = i
+        
+        # result = []
+        # left = 0
+        # right = 0
+        # for i in range(len(s)):
+        #     right = max(right, right_most[s[i]])
+        #     if right == i:
+        #         result.append(right - left + 1)
+        #         left = i + 1
+        # return result
 # @lc code=end
 

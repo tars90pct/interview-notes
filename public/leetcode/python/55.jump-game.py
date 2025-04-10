@@ -12,7 +12,7 @@ class Solution:
         cover = 0
         for i in range(len(nums)):
             if i <= cover:
-                cover = max(i + nums[i], cover)
+                cover = max(cover, i + nums[i])
                 if cover >= len(nums) - 1:
                     return True
         return False

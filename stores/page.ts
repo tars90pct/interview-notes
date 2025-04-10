@@ -30,6 +30,9 @@ export const PAGE_INDEX = [
           {
             key: "design-the-k-most-shared-articles-in-various-time-windows",
           },
+          {
+            key: "design-an-api-rate-limiter"
+          }
         ],
       },
       {
