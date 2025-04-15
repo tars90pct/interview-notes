@@ -13,25 +13,14 @@ class Solution:
         stack = []
         result = 0
         for i in range(len(height)):
-            while stack and height[i] > height[stack[-1]]:
-                mid_index = stack.pop()
+            while stack and height[stack[-1]] < height[i]:
+                mid = stack.pop()
                 if stack:
-                    h = min(height[stack[-1]], height[i]) - height[mid_index]
+                    h = min(height[i], height[stack[-1]]) - height[mid]
                     w = i - stack[-1] - 1
                     result += h * w
             stack.append(i)
         return result
-        # stack = []
-        # result = 0
-        # for i in range(len(height)):
-        #     while stack and height[i] > height[stack[-1]]:
-        #         mid_index = stack.pop()
-        #         if stack:
-        #             h = min(height[stack[-1]], height[i]) - height[mid_index]
-        #             w = i - stack[-1] - 1
-        #             result += h * w
-        #     stack.append(i)
-        # return result
 # @lc code=end
 
-
+Solution().trap([0,1,0,2,1,0,1,3,2,1,2,1])
