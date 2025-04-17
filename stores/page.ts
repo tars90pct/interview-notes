@@ -36,6 +36,9 @@ export const PAGE_INDEX = [
           {
             key: "design-a-google-calendar",
           },
+          {
+            key: "design-a-distributed-queue-like-rabbitmq",
+          },
         ],
       },
       {

@@ -79,6 +79,7 @@
   "design-the-k-most-shared-articles-in-various-time-windows": "Identify the K Most Shared Articles in Various Time Windows",
   "design-an-api-rate-limiter": "Design An API Rate Limiter",
   "design-a-google-calendar": "Design A Google Calendar",
+  "design-a-distributed-queue-like-rabbitmq": "Design a Distributed Queue like RabbitMQ",
   "communication-protocols": "Communication Protocols",
   "security": "Security",
   "database": "Database",
