@@ -5,34 +5,40 @@
 #
 
 # @lc code=start
+from collections import defaultdict
+
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if len(t) > len(s):
+        if len(s) < len(t):
             return ""
+        if len(s) == len(t):
+            if s == t:
+                return s
+        
+        freq_t = defaultdict(int)
+        for ch in t:
+            freq_t[ch] += 1
+        freq = defaultdict(int)
+        def isValid():
+            for key, value in freq_t.items():
+                if value > freq[key]:
+                    return False
+            return True 
 
-        freq = {}
-        for c in t:
-            freq[c] = freq.get(c, 0) + 1
-        remains = len(t)
-        result = ""
-        result_len = float('inf')
         l = 0
-
+        result = ""
         for r in range(len(s)):
-            if freq.get(s[r], 0) > 0:
-                remains -= 1
-            freq[s[r]] = freq.get(s[r], 0) - 1
-            if remains == 0:
-                while freq.get(s[l]) != 0:
-                    freq[s[l]] += 1
-                    l += 1
-                if r - l + 1 < result_len:
-                    result_len = r - l + 1
-                    result = s[l:r+1]
-                freq[s[l]] += 1
-                remains += 1
+            freq[s[r]] += 1
+            while isValid():
+                temp = s[l:r+1]
+                if result == "":
+                    result = temp
+                elif len(temp) < len(result):
+                    result = temp
+                freq[s[l]] -= 1
                 l += 1
         return result
 
 # @lc code=end
-Solution().minWindow("ADOBECODEBANC", "ABC")
+Solution().minWindow("abc", "cba")

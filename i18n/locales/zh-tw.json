@@ -80,6 +80,8 @@
   "design-an-api-rate-limiter": "Design An API Rate Limiter",
   "design-a-google-calendar": "Design A Google Calendar",
   "design-a-distributed-queue-like-rabbitmq": "Design a Distributed Queue like RabbitMQ",
+  "design-a-distributed-lock": "Design A Distributed Lock",
+  "design-google-analytics-user-analytics-dashboard-and-pipeline": "Design Google Analytics - User Analytics Dashboard and Pipeline",
   "communication-protocols": "Communication Protocols",
   "security": "Security",
   "database": "Database",

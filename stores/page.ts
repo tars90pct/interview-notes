@@ -39,6 +39,12 @@ export const PAGE_INDEX = [
           {
             key: "design-a-distributed-queue-like-rabbitmq",
           },
+          {
+            key: "design-a-distributed-lock",
+          },
+          {
+            key: "design-google-analytics-user-analytics-dashboard-and-pipeline",
+          },
         ],
       },
       {
