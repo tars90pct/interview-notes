@@ -125,7 +125,7 @@
       - 透過 Kafka CDC（Change Data Capture），將資料庫變更發送至 Kafka，並由 Flink/Spark 進一步處理。
   - Storage & Aggregation
     - File Storage
-      - ParquetParquet 檔案格式：高效的列式存儲格式，適合分析型應用。
+      - Parquet 檔案格式：高效的列式存儲格式，適合分析型應用。
       - 存放位置：
         - Amazon S3: 便宜、適合長期存儲，但需要讀取回記憶體後才能進行計算
         - HDFS（Hadoop Distributed File System）（可本地計算，加快查詢但，運維成本較高。
